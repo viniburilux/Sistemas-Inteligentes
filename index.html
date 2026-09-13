@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistemas Inteligentes — LuxVerso</title>
+<meta name="description" content="Construímos sistemas inteligentes para investigar, interpretar e agir sobre problemas complexos.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;background:rgba(250,250,250,0.95);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid #eee}
+  nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+  nav .logo{font-weight:700;font-size:1.2rem;color:#1a1a1a;text-decoration:none}
+  nav .logo span{color:#6366f1}
+  nav .nav-links{display:flex;gap:24px;list-style:none}
+  nav .nav-links a{text-decoration:none;color:#555;font-size:0.9rem;font-weight:500;transition:color .2s}
+  nav .nav-links a:hover{color:#6366f1}
+  .mobile-menu{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#1a1a1a}
+
+  /* HERO */
+  .hero{min-height:90vh;display:flex;align-items:center;padding:120px 0 80px;background:linear-gradient(135deg,#fafafa 0%,#eef2ff 50%,#e0e7ff 100%)}
+  .hero-content{max-width:800px}
+  .hero .tag{display:inline-block;padding:6px 16px;background:#eef2ff;color:#6366f1;border-radius:100px;font-size:0.85rem;font-weight:600;margin-bottom:24px;letter-spacing:0.5px}
+  .hero h1{font-size:3.5rem;font-weight:800;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
+  .hero h1 span{color:#6366f1}
+  .hero p{font-size:1.2rem;color:#555;max-width:640px;margin-bottom:40px;line-height:1.7}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-weight:600;font-size:0.95rem;transition:all .2s;text-decoration:none;cursor:pointer}
+  .btn-primary{background:#6366f1;color:#fff;border:none}
+  .btn-primary:hover{background:#4f46e5;transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,0.3)}
+  .btn-secondary{background:#fff;color:#1a1a1a;border:1.5px solid #e5e7eb}
+  .btn-secondary:hover{border-color:#6366f1;color:#6366f1;transform:translateY(-2px)}
+  .hero-stats{display:flex;gap:48px;margin-top:56px;padding-top:40px;border-top:1px solid #e5e7eb}
+  .stat-number{font-size:1.8rem;font-weight:700;color:#6366f1}
+  .stat-label{font-size:0.85rem;color:#888;margin-top:4px}
+
+  /* SECTIONS */
+  section{padding:80px 0}
+  .section-title{font-size:2.2rem;font-weight:700;margin-bottom:12px;letter-spacing:-0.5px}
+  .section-subtitle{font-size:1.05rem;color:#666;max-width:600px;margin-bottom:48px}
+  .section-label{display:inline-block;padding:4px 12px;background:#eef2ff;color:#6366f1;border-radius:100px;font-size:0.8rem;font-weight:600;margin-bottom:12px;letter-spacing:0.5px}
+  .bg-alt{background:#f5f5ff}
+
+  /* CARDS */
+  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+  .card{background:#fff;border-radius:16px;padding:32px;border:1px solid #eef2ff;transition:all .2s}
+  .card:hover{border-color:#6366f1;transform:translateY(-4px);box-shadow:0 12px 40px rgba(99,102,241,0.1)}
+  .card-icon{width:48px;height:48px;background:#eef2ff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px}
+  .card h3{font-size:1.15rem;font-weight:600;margin-bottom:8px}
+  .card p{font-size:0.9rem;color:#666;line-height:1.6}
+  .card .tag-domain{display:inline-block;margin-top:12px;padding:3px 10px;background:#f0fdf4;color:#16a34a;border-radius:100px;font-size:0.75rem;font-weight:500}
+
+  /* PROBLEM SECTION */
+  .problem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+  .problem-item{background:#fff;border-radius:12px;padding:20px;border:1px solid #f0f0f0;text-align:center;font-weight:500;font-size:0.95rem;transition:all .2s}
+  .problem-item:hover{border-color:#6366f1;background:#eef2ff}
+  .problem-item .icon{font-size:1.5rem;margin-bottom:8px}
+
+  /* DOMAINS */
+  .domain-card{padding:24px;background:#fff;border-radius:12px;border:1px solid #e5e7eb}
+  .domain-card h3{font-size:1rem;font-weight:600;margin-bottom:8px}
+  .domain-card p{font-size:0.85rem;color:#666}
+
+  /* TIMELINE / HOW IT WORKS */
+  .steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+  .step{text-align:center;padding:24px 16px;background:#fff;border-radius:12px;border:1px solid #eef2ff;position:relative}
+  .step-num{width:32px;height:32px;background:#6366f1;color:#fff;border-radius:100px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;margin:0 auto 12px}
+  .step h4{font-size:0.9rem;font-weight:600;margin-bottom:6px}
+  .step p{font-size:0.8rem;color:#888}
+
+  /* EVIDENCE */
+  .evidence-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .evidence-item{background:#fff;border-radius:12px;padding:20px;border:1px solid #e5e7eb}
+  .evidence-item h4{font-size:0.9rem;font-weight:600;margin-bottom:6px}
+  .evidence-item p{font-size:0.8rem;color:#666;margin-bottom:8px}
+  .evidence-item .badge{display:inline-block;padding:2px 8px;border-radius:100px;font-size:0.7rem;font-weight:600}
+  .badge-paper{background:#fef3c7;color:#b45309}
+  .badge-dataset{background:#e0f2fe;color:#0369a1}
+  .badge-prototype{background:#f0fdf4;color:#16a34a}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;text-align:center;padding:80px 0;border-radius:0}
+  .cta-section h2{font-size:2.5rem;font-weight:700;margin-bottom:16px}
+  .cta-section p{font-size:1.1rem;opacity:0.9;max-width:600px;margin:0 auto 32px}
+  .btn-cta{background:#fff;color:#6366f1;border:none;padding:16px 36px;font-size:1.05rem}
+  .btn-cta:hover{background:#eef2ff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+
+  /* FOOTER */
+  footer{background:#1a1a1a;color:#fff;padding:48px 0}
+  footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  footer a{color:#888;text-decoration:none;transition:color .2s}
+  footer a:hover{color:#fff}
+  footer .links{display:flex;gap:24px}
+  footer .footer-logo{font-weight:700;font-size:1rem}
+  footer .footer-logo span{color:#6366f1}
+
+  /* RESPONSIVE */
+  @media(max-width:768px){
+    .hero h1{font-size:2.2rem}
+    .hero-stats{flex-wrap:wrap;gap:24px}
+    .hero-actions{flex-direction:column}
+    nav .nav-links{display:none}
+    .mobile-menu{display:block}
+    .cards-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .problem-grid{grid-template-columns:1fr 1fr}
+    .section-title{font-size:1.7rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">Sistemas <span>Inteligentes</span></a>
+    <button class="mobile-menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <ul class="nav-links">
+      <li><a href="#capacidades">Capacidades</a></li>
+      <li><a href="#dominios">Domínios</a></li>
+      <li><a href="#cases">Cases</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#evidencia">Evidência</a></li>
+      <li><a href="https://luxverso.com" target="_blank">LuxVerso →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="tag">🏗️ Infraestrutura de investigação inteligente</div>
+      <h1>Construímos sistemas<br>para <span>resolver problemas complexos</span></h1>
+      <p>Dados fragmentados, conhecimento disperso, domínios diferentes — uma mesma abordagem. Transformamos fontes desconectadas em inteligência rastreável para tomada de decisão.</p>
+      <div class="hero-actions">
+        <a href="#capacidades" class="btn btn-primary">Explorar capacidades ↓</a>
+        <a href="#dominios" class="btn btn-secondary">Ver domínios</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-number">10+</div>
+          <div class="stat-label">domínios investigados</div>
+        </div>
+        <div>
+          <div class="stat-number">6</div>
+          <div class="stat-label">sistemas construídos</div>
+        </div>
+        <div>
+          <div class="stat-number">12+</div>
+          <div class="stat-label">publicações e datasets</div>
+        </div>
+        <div>
+          <div class="stat-number">24</div>
+          <div class="stat-label">repositórios públicos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section>
+  <div class="container">
+    <div class="section-label">O PROBLEMA</div>
+    <h2 class="section-title">Informação não é inteligência.</h2>
+    <p class="section-subtitle">Dados, literatura, patentes, editais, contratos, território — cada fonte isolada conta uma história parcial. O desafio real é conectá-las.</p>
+    <div class="problem-grid">
+      <div class="problem-item"><div class="icon">📚</div>Literatura científica dispersa</div>
+      <div class="problem-item"><div class="icon">📜</div>Patentes fragmentadas</div>
+      <div class="problem-item"><div class="icon">🛰️</div>Território sub-analisado</div>
+      <div class="problem-item"><div class="icon">📋</div>Contratos públicos opacos</div>
+      <div class="problem-item"><div class="icon">🎯</div>Oportunidades invisíveis</div>
+      <div class="problem-item"><div class="icon">🧪</div>P&D sem direção clara</div>
+      <div class="problem-item"><div class="icon">🌐</div>Dados multi-fonte sem integração</div>
+      <div class="problem-item"><div class="icon">🧠</div>Conhecimento não reutilizável</div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACIDADES -->
+<section id="capacidades" class="bg-alt">
+  <div class="container">
+    <div class="section-label">CAPACIDADES</div>
+    <h2 class="section-title">O que construímos</h2>
+    <p class="section-subtitle">Capacidades reais, extraídas de sistemas em produção — não conceitos. Cada uma foi aplicada a problemas concretos.</p>
+    <div class="cards-grid" id="capabilities-container">
+      <!-- populated by JS or inline -->
+    </div>
+  </div>
+</section>
+
+<!-- DOMÍNIOS -->
+<section id="dominios">
+  <div class="container">
+    <div class="section-label">DOMÍNIOS</div>
+    <h2 class="section-title">A mesma capacidade,<br>múltiplos domínios</h2>
+    <p class="section-subtitle">Não somos "IA para X". Somos capazes de construir sistemas inteligentes aplicados a qualquer domínio onde existam fontes fragmentadas e perguntas complexas.</p>
+    <div class="cards-grid" id="domains-container">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases" class="bg-alt">
+  <div class="container">
+    <div class="section-label">CASES</div>
+    <h2 class="section-title">Sistemas que já construímos</h2>
+    <p class="section-subtitle">Cada case representa um sistema real, com código público, dados abertos e resultados verificáveis.</p>
+    <div class="cards-grid" id="cases-container">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="section-label">ARQUITETURA</div>
+    <h2 class="section-title">Como funciona</h2>
+    <p class="section-subtitle">Um ciclo de investigação que se adapta ao problema — não o contrário.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h4>Pergunta</h4><p>O problema define a busca</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Descoberta</h4><p>Múltiplas fontes consultadas</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Representação</h4><p>Dados estruturados em grafos, séries, redes</p></div>
+      <div class="step"><div class="step-num">4</div><h4>Investigação</h4><p>Evidência organizada, lacunas identificadas</p></div>
+      <div class="step"><div class="step-num">5</div><h4>Síntese</h4><p>Inteligência acionável produzida</p></div>
+      <div class="step"><div class="step-num">6</div><h4>Ação</h4><p>Decisão, oportunidade, próximo passo</p></div>
+    </div>
+    <p style="margin-top:32px;font-size:0.9rem;color:#888;text-align:center">Por trás: contratos de evidência, proveniência auditável, separação observado/inferido, memória persistente e representações reutilizáveis.</p>
+  </div>
+</section>
+
+<!-- EVIDÊNCIA -->
+<section id="evidencia" class="bg-alt">
+  <div class="container">
+    <div class="section-label">EVIDÊNCIA</div>
+    <h2 class="section-title">Publicações, datasets e resultados</h2>
+    <p class="section-subtitle">Trabalhos aceitos, datasets públicos e demonstrações que validam a abordagem.</p>
+    <div class="evidence-grid" id="evidence-container">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Transforme um problema real<br>em inteligência acionável</h2>
+    <p>Tem um desafio que dados convencionais não resolvem? Traga seu problema. Construímos o sistema.</p>
+    <a href="https://luxverso.com" target="_blank" class="btn btn-cta">Conversar →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Sistemas <span>Inteligentes</span> · <span style="font-weight:300;font-size:0.85rem;color:#888">parte do ecossistema</span> <span style="color:#888">LuxVerso</span></div>
+    <div class="links">
+      <a href="https://github.com/viniburilux" target="_blank">GitHub</a>
+      <a href="https://luxverso.com" target="_blank">LuxVerso</a>
+      <a href="https://luxverso.com/evidence" target="_blank">Publicações</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// CAPABILITIES DATA
+const capabilities = [
+  {icon:"🔍",title:"Investigação multi-fonte",desc:"Consulta simultânea a literatura, patentes, datasets públicos, satélite e APIs científicas com evidência rastreável.",domains:"Todos"},
+  {icon:"🛰️",title:"Inteligência territorial",desc:"Detecção precoce de transformação via embeddings de satélite (AlphaEarth), validação óptica e análise temporal de trajetórias.",domains:"Território, Mineração, Energia, Meio Ambiente"},
+  {icon:"🧬",title:"Inteligência científica",desc:"Mapeamento de literatura, patentes, atores, instituições e relações com estados epistemológicos explícitos.",domains:"Biotecnologia, Agro, Ciência"},
+  {icon:"🎯",title:"Inteligência de oportunidades",desc:"Captura e estruturação de editais, chamadas, financiamentos e fontes de oportunidade em releases versionados.",domains:"Inovação, P&D, Governo"},
+  {icon:"📊",title:"Análise de dados públicos",desc:"Pipelines de transparência pública (PNCP, IBGE, SICONFI) com cruzamento multi-fonte e dashboards interativos.",domains:"Governo, Transparência, Contratos"},
+  {icon:"📜",title:"Proveniência e evidência",desc:"Contratos canônicos de evidência com 7 estados epistêmicos, versionamento por hash e cadeia auditável.",domains:"Todos (transversal)"},
+  {icon:"🧩",title:"Representação de conhecimento",desc:"Grafos de entidades, séries temporais, redes de citações — representações reutilizáveis independentes de domínio.",domains:"Todos (transversal)"},
+  {icon:"🤖",title:"Agentes de investigação",desc:"Sistemas multiagente com capacidades catalogadas, playbooks operacionais e integração com memória persistente.",domains:"Automação, Pesquisa"},
+  {icon:"🧠",title:"Sistemas de memória",desc:"Memória operacional consultável com handoff entre agentes, busca grounded por evidência e continuidade de investigação.",domains:"Automação, Operaçional"},
+  {icon:"🔬",title:"Sensoriamento inteligente",desc:"Sensor de espectroscopia Raman com IA embarcada (99,43% acurácia) para QC industrial e análise de materiais.",domains:"Farma, Alimentos, Petróleo, Mineração"}
+];
+
+// DOMAINS DATA
+const domains = [
+  {title:"🧬 Biotecnologia & Agro",desc:"Investigação de bioinsumos, organismos, processos, patentes e rotas tecnológicas com proveniência e corpus de referência.",cases:"Inteligência Biotecnológica"},
+  {title:"⛏️ Mineração & Materiais",desc:"Análise de patentes minerais, materiais críticos, processos de recuperação e rotas tecnológicas com dados públicos e proprietários.",cases:"Patentes Minerais, Representação"},
+  {title:"⚡ Energia & Transição",desc:"Mapeamento de expansão energética, impactos territoriais, tecnologias renováveis e oportunidades de P&D.",cases:"TTI, GhostWorks"},
+  {title:"🌿 Meio Ambiente & Território",desc:"Monitoramento de manguezais, queimadas, mudanças de uso do solo com séries temporais de satélite e validação de campo.",cases:"Manguezais, GhostWorks, TTI"},
+  {title:"🏛️ Dados Públicos & Transparência",desc:"Análise de contratações públicas, cruzamento com indicadores socioeconômicos, detecção de padrões e anomalias.",cases:"PNCP, Radar-Contratos, CGU"},
+  {title:"🧪 Ciência & P&D Industrial",desc:"Technology intelligence, scouting de parceiros, mapeamento de capacidades e investigação de fronteiras científicas.",cases:"TraceFoundry, Organoid Intelligence"},
+  {title:"💊 Farma & Saúde",desc:"Controle de qualidade por espectroscopia, análise de insumos farmacêuticos e investigação de文献científica.",cases:"LuxSense, Inteligência Biotecnológica"},
+  {title:"🏗️ Inovação & Oportunidades",desc:"Radar de editais, chamadas públicas e fontes de financiamento com release semanal automatizado.",cases:"Lux-Radar"}
+];
+
+// CASES DATA
+const cases = [
+  {title:"TraceFoundry",desc:"Infraestrutura pública de investigação baseada em evidência com adapters reais (DANDI, Zenodo, OpenAlex, PatentsView), contratos canônicos e 7 estados epistêmicos.",url:"https://github.com/viniburilux/TraceFoundry",tag:"Infraestrutura"},
+  {title:"GhostWorks",desc:"Motor de inteligência territorial sobre embeddings de satélite com detecção precoce de transformação em mineração, energia e meio ambiente.",url:"https://github.com/viniburilux/ghostworks",tag:"Território"},
+  {title:"TTI Brasil 2017-2024",desc:"Índice de Transformação Territorial nacional (1-cos similarity de embeddings AlphaEarth), raster 2km, validação Sentinel-2 e notebook Colab.",url:"https://github.com/viniburilux/TTI_Brazil_2017_2024",tag:"Território"},
+  {title:"Inteligência Biotecnológica",desc:"Investigação pública de biotecnologia agropecuária com 763 obras, 2.680 atores, 767 instituições e provenance register.",url:"https://github.com/viniburilux/inteligencia-biotecnologica-agropecuaria",tag:"Biotecnologia"},
+  {title:"Lux-Radar",desc:"Motor de opportunity intelligence com pipeline semanal automatizado para captura de editais, chamadas e financiamentos.",url:"https://github.com/viniburilux/Lux-Radar",tag:"Oportunidades"},
+  {title:"LuxSense",desc:"Sensor Raman com IA (99,43% acurácia) para controle de qualidade industrial - paper em revisão (Frontiers in Nanotechnology).",url:"https://luxverso.com/luxsense",tag:"Sensoriamento"},
+  {title:"Organoid Intelligence",desc:"Investigação pública sobre aprendizagem e previsão em sistemas neurais biológicos com achados documentados (inclusive negativos).",url:"https://github.com/viniburilux/organoid-intelligence",tag:"Ciência"},
+  {title:"CGU Reuso 2026",desc:"4 cruzamentos de dados públicos (queimadas × PNCP × FIRMS × CNES/IBGE) com demo interativa e achados concretos.",url:"https://github.com/viniburilux/cgu-reuso-2026",tag:"Dados Públicos"},
+  {title:"Radar-Contratos-BA",desc:"Dashboard de contratações públicas artísticas da Bahia (R$160M, 1.325 contratos, 150 municípios) com React + Recharts.",url:"https://github.com/viniburilux/Radar-Contratos-BA",tag:"Transparência"},
+  {title:"Manguezais SP",desc:"Case territorial com 4.000 pontos amostrais, 7 anos de série, 364 artigos e achados que a literatura não explica.",url:"https://luxverso.com/Manguezais-Brasil/manguezais-sp",tag:"Território"}
+];
+
+// EVIDENCE DATA
+const evidence = [
+  {title:"\"The Illusion of Consensus\"",type:"paper",venue:"CHI 2026 / InterAI Workshop",desc:"Interação humano-IA e viés de consenso em sistemas interativos."},
+  {title:"\"When Humans Become Regime Stabilizers\"",type:"paper",venue:"CHI 2026 / HEAL Workshop",desc:"Humanos como estabilizadores de regime em sistemas IA."},
+  {title:"\"Territorial Change Detection...\"",type:"paper",venue:"IJCAI-ECAI 2026 / GlobalSouthAI",desc:"Detecção de mudança territorial sob orçamento zero — valida o GhostWorks."},
+  {title:"Nano-enabled Sensing (em revisão)",type:"paper",venue:"Frontiers in Nanotechnology",desc:"Sensor Raman com IA para controle de qualidade — valida o LuxSense."},
+  {title:"TTI Brasil 2017-2024",type:"dataset",venue:"Zenodo (preprint)",desc:"Raster nacional de transformação territorial, 2km resolução, CC-BY 4.0."},
+  {title:"LuxVerso Semantic Convergence",type:"dataset",venue:"GitHub",desc:"352 conversas, 34.626 mensagens — dataset de interação humano-LLM longitudinal."},
+  {title:"GhostWorks Atlas",type:"dataset",venue:"GitHub",desc:"887 trajetórias de embeddings (2018-2024) em 6 fenômenos distintos."}
+];
+
+// RENDER
+function renderCards(containerId, data, template) {
+  const c = document.getElementById(containerId);
+  data.forEach(item => {
+    let html = template(item);
+    c.innerHTML += html;
+  });
+}
+
+renderCards('capabilities-container', capabilities, (d) => `
+  <div class="card">
+    <div class="card-icon">${d.icon}</div>
+    <h3>${d.title}</h3>
+    <p>${d.desc}</p>
+    <span class="tag-domain">${d.domains}</span>
+  </div>
+`);
+
+renderCards('domains-container', domains, (d) => `
+  <div class="card">
+    <h3>${d.title}</h3>
+    <p>${d.desc}</p>
+    <span class="tag-domain">Case: ${d.cases}</span>
+  </div>
+`);
+
+renderCards('cases-container', cases, (d) => `
+  <div class="card" onclick="window.open('${d.url}','_blank')" style="cursor:pointer">
+    <h3>${d.title}</h3>
+    <p>${d.desc}</p>
+    <span class="tag-domain">${d.tag}</span>
+  </div>
+`);
+
+const ec = document.getElementById('evidence-container');
+evidence.forEach(e => {
+  ec.innerHTML += `
+    <div class="evidence-item">
+      <h4>${e.title}</h4>
+      <p>${e.venue}</p>
+      <p style="font-size:0.8rem">${e.desc}</p>
+      <span class="badge badge-${e.type === 'paper' ? 'paper' : 'dataset'}">${e.type === 'paper' ? '📄 Paper' : '📦 Dataset'}</span>
+    </div>
+  `;
+});
+</script>
+
+</body>
+</html>
