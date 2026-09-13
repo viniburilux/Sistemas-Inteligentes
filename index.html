@@ -3,112 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistemas Inteligentes — LuxVerso</title>
-<meta name="description" content="Construímos sistemas inteligentes para investigar, interpretar e agir sobre problemas complexos.">
+<title>Sistemas Inteligentes — Instituto de Investigação Aplicada</title>
+<meta name="description" content="Investigação, descoberta e inteligência aplicada a problemas complexos. Um braço público do ecossistema LuxVerso.">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6;overflow-x:hidden}
   .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
   /* NAV */
   nav{position:fixed;top:0;width:100%;background:rgba(250,250,250,0.95);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid #eee}
   nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
-  nav .logo{font-weight:700;font-size:1.2rem;color:#1a1a1a;text-decoration:none}
+  nav .logo{font-weight:700;font-size:1.15rem;color:#1a1a1a;text-decoration:none}
   nav .logo span{color:#6366f1}
-  nav .nav-links{display:flex;gap:24px;list-style:none}
-  nav .nav-links a{text-decoration:none;color:#555;font-size:0.9rem;font-weight:500;transition:color .2s}
-  nav .nav-links a:hover{color:#6366f1}
+  nav .nav-links{display:flex;gap:8px;list-style:none}
+  nav .nav-links a{text-decoration:none;color:#555;font-size:0.85rem;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s}
+  nav .nav-links a:hover{background:#eef2ff;color:#6366f1}
+  nav .nav-links .cta-nav{background:#6366f1;color:#fff !important}
+  nav .nav-links .cta-nav:hover{background:#4f46e5;transform:translateY(-1px)}
   .mobile-menu{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#1a1a1a}
 
   /* HERO */
-  .hero{min-height:90vh;display:flex;align-items:center;padding:120px 0 80px;background:linear-gradient(135deg,#fafafa 0%,#eef2ff 50%,#e0e7ff 100%)}
-  .hero-content{max-width:800px}
-  .hero .tag{display:inline-block;padding:6px 16px;background:#eef2ff;color:#6366f1;border-radius:100px;font-size:0.85rem;font-weight:600;margin-bottom:24px;letter-spacing:0.5px}
-  .hero h1{font-size:3.5rem;font-weight:800;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
+  .hero{min-height:85vh;display:flex;align-items:center;padding:120px 0 60px;background:linear-gradient(135deg,#fafafa 0%,#eef2ff 50%,#e0e7ff 100%);position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.08),transparent 70%);border-radius:50%}
+  .hero-content{max-width:800px;position:relative;z-index:1}
+  .hero .tag{display:inline-block;padding:6px 16px;background:#eef2ff;color:#6366f1;border-radius:100px;font-size:0.8rem;font-weight:600;margin-bottom:20px;letter-spacing:0.5px}
+  .hero h1{font-size:3.2rem;font-weight:800;line-height:1.12;margin-bottom:20px;letter-spacing:-0.5px}
   .hero h1 span{color:#6366f1}
-  .hero p{font-size:1.2rem;color:#555;max-width:640px;margin-bottom:40px;line-height:1.7}
+  .hero p{font-size:1.15rem;color:#555;max-width:640px;margin-bottom:32px;line-height:1.7}
   .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-weight:600;font-size:0.95rem;transition:all .2s;text-decoration:none;cursor:pointer}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-weight:600;font-size:0.9rem;transition:all .2s;text-decoration:none;cursor:pointer}
   .btn-primary{background:#6366f1;color:#fff;border:none}
   .btn-primary:hover{background:#4f46e5;transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,0.3)}
   .btn-secondary{background:#fff;color:#1a1a1a;border:1.5px solid #e5e7eb}
   .btn-secondary:hover{border-color:#6366f1;color:#6366f1;transform:translateY(-2px)}
-  .hero-stats{display:flex;gap:48px;margin-top:56px;padding-top:40px;border-top:1px solid #e5e7eb}
-  .stat-number{font-size:1.8rem;font-weight:700;color:#6366f1}
-  .stat-label{font-size:0.85rem;color:#888;margin-top:4px}
 
-  /* SECTIONS */
-  section{padding:80px 0}
-  .section-title{font-size:2.2rem;font-weight:700;margin-bottom:12px;letter-spacing:-0.5px}
-  .section-subtitle{font-size:1.05rem;color:#666;max-width:600px;margin-bottom:48px}
-  .section-label{display:inline-block;padding:4px 12px;background:#eef2ff;color:#6366f1;border-radius:100px;font-size:0.8rem;font-weight:600;margin-bottom:12px;letter-spacing:0.5px}
+  /* INTELLIGENCE FEED */
+  .feed-bar{background:#1a1a1a;color:#fff;padding:12px 0;overflow:hidden;border-bottom:3px solid #6366f1}
+  .feed-scroll{display:flex;gap:40px;animation:scrollFeed 40s linear infinite;white-space:nowrap}
+  .feed-item{display:inline-flex;align-items:center;gap:8px;font-size:0.8rem;color:#ccc}
+  .feed-item .feed-icon{color:#6366f1;font-weight:700}
+  .feed-item .feed-tag{background:#6366f1;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600}
+  @keyframes scrollFeed{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  /* INTELLIGENCE SECTION */
+  .intel-section{padding:80px 0}
+  .section-label{display:inline-block;padding:4px 12px;background:#eef2ff;color:#6366f1;border-radius:100px;font-size:0.78rem;font-weight:600;margin-bottom:12px;letter-spacing:0.5px}
+  .section-title{font-size:2rem;font-weight:700;margin-bottom:10px;letter-spacing:-0.5px}
+  .section-subtitle{font-size:1rem;color:#666;max-width:640px;margin-bottom:40px}
   .bg-alt{background:#f5f5ff}
 
-  /* CARDS */
-  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
-  .card{background:#fff;border-radius:16px;padding:32px;border:1px solid #eef2ff;transition:all .2s}
-  .card:hover{border-color:#6366f1;transform:translateY(-4px);box-shadow:0 12px 40px rgba(99,102,241,0.1)}
-  .card-icon{width:48px;height:48px;background:#eef2ff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px}
-  .card h3{font-size:1.15rem;font-weight:600;margin-bottom:8px}
-  .card p{font-size:0.9rem;color:#666;line-height:1.6}
-  .card .tag-domain{display:inline-block;margin-top:12px;padding:3px 10px;background:#f0fdf4;color:#16a34a;border-radius:100px;font-size:0.75rem;font-weight:500}
+  /* DISCOVERY CARDS */
+  .discovery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+  .discovery-card{background:#fff;border-radius:16px;padding:28px;border:1px solid #eef2ff;transition:all .3s;position:relative;overflow:hidden}
+  .discovery-card:hover{border-color:#6366f1;transform:translateY(-3px);box-shadow:0 12px 40px rgba(99,102,241,0.1)}
+  .discovery-card .dc-tag{display:inline-block;padding:3px 10px;border-radius:100px;font-size:0.7rem;font-weight:600;margin-bottom:12px}
+  .tag-bio{background:#f0fdf4;color:#16a34a}
+  .tag-territory{background:#e0f2fe;color:#0369a1}
+  .tag-mining{background:#fef3c7;color:#b45309}
+  .tag-energy{background:#fef9c3;color:#a16207}
+  .tag-data{background:#f3e8ff;color:#7c3aed}
+  .tag-tech{background:#eef2ff;color:#6366f1}
+  .discovery-card h3{font-size:1rem;font-weight:600;margin-bottom:6px;line-height:1.4}
+  .discovery-card .dc-question{font-size:0.85rem;color:#888;margin-bottom:12px;font-style:italic}
+  .discovery-card .dc-finding{font-size:0.88rem;color:#1a1a1a;margin-bottom:10px;line-height:1.5}
+  .discovery-card .dc-implication{font-size:0.8rem;color:#6366f1;font-weight:500}
+  .discovery-card .dc-meta{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid #f0f0f0;font-size:0.75rem;color:#888}
+  .discovery-card .dc-status{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:100px;font-size:0.7rem;font-weight:600}
+  .status-observed{background:#f0fdf4;color:#16a34a}
+  .status-inferred{background:#fef3c7;color:#b45309}
+  .status-hypothesis{background:#eef2ff;color:#6366f1}
+  .dc-next{display:inline-block;margin-top:8px;color:#6366f1;font-size:0.8rem;font-weight:500;text-decoration:none}
+  .dc-next:hover{text-decoration:underline}
 
-  /* PROBLEM SECTION */
-  .problem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
-  .problem-item{background:#fff;border-radius:12px;padding:20px;border:1px solid #f0f0f0;text-align:center;font-weight:500;font-size:0.95rem;transition:all .2s}
-  .problem-item:hover{border-color:#6366f1;background:#eef2ff}
-  .problem-item .icon{font-size:1.5rem;margin-bottom:8px}
+  /* Bento Grid for Capabilities + Domains */
+  .bento{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .bento-wide{grid-column:1/-1}
+  .bento-card{background:#fff;border-radius:16px;padding:28px;border:1px solid #eef2ff;transition:all .2s}
+  .bento-card:hover{border-color:#6366f1;transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,0.08)}
+  .bento-card .bc-icon{margin-bottom:12px;font-size:1.8rem}
+  .bento-card h3{font-size:1.05rem;font-weight:600;margin-bottom:6px}
+  .bento-card p{font-size:0.85rem;color:#666;line-height:1.6}
+  .bento-card .bc-tag{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:500}
+  .tag-cap{background:#eef2ff;color:#6366f1}
+  .tag-dom{background:#f0fdf4;color:#16a34a}
 
-  /* DOMAINS */
-  .domain-card{padding:24px;background:#fff;border-radius:12px;border:1px solid #e5e7eb}
-  .domain-card h3{font-size:1rem;font-weight:600;margin-bottom:8px}
-  .domain-card p{font-size:0.85rem;color:#666}
+  /* CASES MINI */
+  .case-strip{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;scrollbar-width:thin}
+  .case-chip{flex-shrink:0;background:#fff;border-radius:12px;padding:16px 20px;border:1px solid #eef2ff;cursor:pointer;transition:all .2s;max-width:260px}
+  .case-chip:hover{border-color:#6366f1;transform:translateY(-2px);box-shadow:0 6px 16px rgba(99,102,241,0.08)}
+  .case-chip h4{font-size:0.9rem;font-weight:600;margin-bottom:4px}
+  .case-chip p{font-size:0.78rem;color:#888;margin-bottom:6px}
+  .case-chip .chip-tag{font-size:0.7rem;padding:2px 8px;border-radius:100px;background:#eef2ff;color:#6366f1;font-weight:500}
 
-  /* TIMELINE / HOW IT WORKS */
-  .steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
-  .step{text-align:center;padding:24px 16px;background:#fff;border-radius:12px;border:1px solid #eef2ff;position:relative}
-  .step-num{width:32px;height:32px;background:#6366f1;color:#fff;border-radius:100px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;margin:0 auto 12px}
-  .step h4{font-size:0.9rem;font-weight:600;margin-bottom:6px}
-  .step p{font-size:0.8rem;color:#888}
+  /* HOW IT WORKS */
+  .flow{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .flow-step{text-align:center;padding:20px 12px;background:#fff;border-radius:12px;border:1px solid #eef2ff;position:relative}
+  .flow-step .fs-num{width:28px;height:28px;background:#6366f1;color:#fff;border-radius:100px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.75rem;margin:0 auto 10px}
+  .flow-step h4{font-size:0.82rem;font-weight:600;margin-bottom:4px}
+  .flow-step p{font-size:0.75rem;color:#888}
 
   /* EVIDENCE */
-  .evidence-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
-  .evidence-item{background:#fff;border-radius:12px;padding:20px;border:1px solid #e5e7eb}
-  .evidence-item h4{font-size:0.9rem;font-weight:600;margin-bottom:6px}
-  .evidence-item p{font-size:0.8rem;color:#666;margin-bottom:8px}
-  .evidence-item .badge{display:inline-block;padding:2px 8px;border-radius:100px;font-size:0.7rem;font-weight:600}
+  .ev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .ev-item{background:#fff;border-radius:12px;padding:16px;border:1px solid #e5e7eb}
+  .ev-item h4{font-size:0.85rem;font-weight:600;margin-bottom:4px}
+  .ev-item .ev-venue{font-size:0.75rem;color:#888;margin-bottom:6px}
+  .ev-item .badge{display:inline-block;padding:2px 8px;border-radius:100px;font-size:0.68rem;font-weight:600}
   .badge-paper{background:#fef3c7;color:#b45309}
   .badge-dataset{background:#e0f2fe;color:#0369a1}
-  .badge-prototype{background:#f0fdf4;color:#16a34a}
 
   /* CTA */
-  .cta-section{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;text-align:center;padding:80px 0;border-radius:0}
-  .cta-section h2{font-size:2.5rem;font-weight:700;margin-bottom:16px}
-  .cta-section p{font-size:1.1rem;opacity:0.9;max-width:600px;margin:0 auto 32px}
-  .btn-cta{background:#fff;color:#6366f1;border:none;padding:16px 36px;font-size:1.05rem}
+  .cta-section{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;text-align:center;padding:72px 0}
+  .cta-section h2{font-size:2.2rem;font-weight:700;margin-bottom:14px}
+  .cta-section p{font-size:1rem;opacity:0.9;max-width:560px;margin:0 auto 28px}
+  .btn-cta{background:#fff;color:#6366f1;border:none;padding:16px 36px;font-size:1rem}
   .btn-cta:hover{background:#eef2ff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
 
   /* FOOTER */
-  footer{background:#1a1a1a;color:#fff;padding:48px 0}
+  footer{background:#1a1a1a;color:#fff;padding:40px 0}
   footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-  footer a{color:#888;text-decoration:none;transition:color .2s}
+  footer a{color:#888;text-decoration:none;transition:color .2s;font-size:0.85rem}
   footer a:hover{color:#fff}
-  footer .links{display:flex;gap:24px}
-  footer .footer-logo{font-weight:700;font-size:1rem}
-  footer .footer-logo span{color:#6366f1}
+  footer .links{display:flex;gap:20px}
+  footer .fl{font-weight:700;font-size:0.9rem}
+  footer .fl span{color:#6366f1}
 
   /* RESPONSIVE */
   @media(max-width:768px){
-    .hero h1{font-size:2.2rem}
-    .hero-stats{flex-wrap:wrap;gap:24px}
-    .hero-actions{flex-direction:column}
+    .hero h1{font-size:2rem}
     nav .nav-links{display:none}
     .mobile-menu{display:block}
-    .cards-grid{grid-template-columns:1fr}
-    .steps{grid-template-columns:1fr 1fr}
-    .problem-grid{grid-template-columns:1fr 1fr}
-    .section-title{font-size:1.7rem}
+    .bento{grid-template-columns:1fr}
+    .discovery-grid{grid-template-columns:1fr}
+    .flow{grid-template-columns:1fr 1fr}
+    .hero-actions{flex-direction:column}
+    .section-title{font-size:1.5rem}
   }
 </style>
 </head>
@@ -119,139 +148,125 @@
     <a href="/" class="logo">Sistemas <span>Inteligentes</span></a>
     <button class="mobile-menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
     <ul class="nav-links">
+      <li><a href="#investigacoes">🔍 Investigações</a></li>
       <li><a href="#capacidades">Capacidades</a></li>
       <li><a href="#dominios">Domínios</a></li>
-      <li><a href="#cases">Cases</a></li>
-      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#systems">Sistemas</a></li>
       <li><a href="#evidencia">Evidência</a></li>
-      <li><a href="https://luxverso.com" target="_blank">LuxVerso →</a></li>
+      <li><a href="https://luxverso.com" target="_blank" class="cta-nav">LuxVerso →</a></li>
     </ul>
   </div>
 </nav>
+
+<!-- INTELLIGENCE FEED BAR -->
+<div class="feed-bar">
+  <div class="container" style="overflow:hidden">
+    <div class="feed-scroll">
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">DESCOBERTA</span> Bacillus halotolerans Ba2-6 reduz 93,85% de juvenis de nematoides — DOI publicado</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">SINAL</span> Convergência de 8+ patentes em recuperação de lítio de fontes secundárias</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">MAPEADO</span> Nordeste lidera transformação territorial média (2017-2024) — TTI Brasil</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">SISTEMA</span> TraceFoundry — contratos de evidência com 7 estados epistêmicos funcionais</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">PUBLICAÇÃO</span> Paper de detecção territorial aceito no IJCAI-ECAI 2026</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">EXPERIMENTO</span> Infraestrutura Lux prova ser objetivamente melhor que LLM puro (mesmas fontes)</span>
+      <!-- duplicate for scroll -->
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">DESCOBERTA</span> Bacillus halotolerans Ba2-6 reduz 93,85% de juvenis de nematoides — DOI publicado</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">SINAL</span> Convergência de 8+ patentes em recuperação de lítio de fontes secundárias</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">MAPEADO</span> Nordeste lidera transformação territorial média (2017-2024) — TTI Brasil</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">SISTEMA</span> TraceFoundry — contratos de evidência com 7 estados epistêmicos funcionais</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">PUBLICAÇÃO</span> Paper de detecção territorial aceito no IJCAI-ECAI 2026</span>
+      <span class="feed-item"><span class="feed-icon">◈</span><span class="feed-tag">EXPERIMENTO</span> Infraestrutura Lux prova ser objetivamente melhor que LLM puro (mesmas fontes)</span>
+    </div>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <div class="tag">🏗️ Infraestrutura de investigação inteligente</div>
-      <h1>Construímos sistemas<br>para <span>resolver problemas complexos</span></h1>
-      <p>Dados fragmentados, conhecimento disperso, domínios diferentes — uma mesma abordagem. Transformamos fontes desconectadas em inteligência rastreável para tomada de decisão.</p>
+      <div class="tag">🏗️ Instituto de investigação aplicada</div>
+      <h1>Investigar, descobrir,<br>transformar em <span>inteligência</span></h1>
+      <p>Dados fragmentados, conhecimento disperso, domínios diferentes — uma mesma abordagem. Investigamos problemas complexos, descobrimos relações não óbvias e produzimos inteligência rastreável para tomada de decisão.</p>
       <div class="hero-actions">
-        <a href="#capacidades" class="btn btn-primary">Explorar capacidades ↓</a>
-        <a href="#dominios" class="btn btn-secondary">Ver domínios</a>
-      </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-number">10+</div>
-          <div class="stat-label">domínios investigados</div>
-        </div>
-        <div>
-          <div class="stat-number">6</div>
-          <div class="stat-label">sistemas construídos</div>
-        </div>
-        <div>
-          <div class="stat-number">12+</div>
-          <div class="stat-label">publicações e datasets</div>
-        </div>
-        <div>
-          <div class="stat-number">24</div>
-          <div class="stat-label">repositórios públicos</div>
-        </div>
+        <a href="#investigacoes" class="btn btn-primary">Explorar descobertas ↓</a>
+        <a href="#capacidades" class="btn btn-secondary">Como funciona</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM -->
-<section>
+<!-- INVESTIGAÇÕES / DESCOBERTAS -->
+<section id="investigacoes" class="intel-section">
   <div class="container">
-    <div class="section-label">O PROBLEMA</div>
-    <h2 class="section-title">Informação não é inteligência.</h2>
-    <p class="section-subtitle">Dados, literatura, patentes, editais, contratos, território — cada fonte isolada conta uma história parcial. O desafio real é conectá-las.</p>
-    <div class="problem-grid">
-      <div class="problem-item"><div class="icon">📚</div>Literatura científica dispersa</div>
-      <div class="problem-item"><div class="icon">📜</div>Patentes fragmentadas</div>
-      <div class="problem-item"><div class="icon">🛰️</div>Território sub-analisado</div>
-      <div class="problem-item"><div class="icon">📋</div>Contratos públicos opacos</div>
-      <div class="problem-item"><div class="icon">🎯</div>Oportunidades invisíveis</div>
-      <div class="problem-item"><div class="icon">🧪</div>P&D sem direção clara</div>
-      <div class="problem-item"><div class="icon">🌐</div>Dados multi-fonte sem integração</div>
-      <div class="problem-item"><div class="icon">🧠</div>Conhecimento não reutilizável</div>
-    </div>
+    <div class="section-label">🔬 INTELIGÊNCIA EM MOVIMENTO</div>
+    <h2 class="section-title">O que estamos descobrindo</h2>
+    <p class="section-subtitle">Descobertas produzidas pelos nossos sistemas. Cada entrada representa uma investigação real — com pergunta, sinal, evidência e próximo passo.</p>
+    <div class="discovery-grid" id="discovery-container"></div>
   </div>
 </section>
 
-<!-- CAPACIDADES -->
-<section id="capacidades" class="bg-alt">
+<!-- CAPACIDADES (BENTO) -->
+<section id="capacidades" class="intel-section bg-alt">
   <div class="container">
-    <div class="section-label">CAPACIDADES</div>
+    <div class="section-label">⚙️ CAPACIDADES</div>
     <h2 class="section-title">O que construímos</h2>
-    <p class="section-subtitle">Capacidades reais, extraídas de sistemas em produção — não conceitos. Cada uma foi aplicada a problemas concretos.</p>
-    <div class="cards-grid" id="capabilities-container">
-      <!-- populated by JS or inline -->
-    </div>
+    <p class="section-subtitle">Capacidades reais, extraídas de sistemas em produção — testadas em múltiplos domínios.</p>
+    <div class="bento" id="bento-container"></div>
   </div>
 </section>
 
 <!-- DOMÍNIOS -->
-<section id="dominios">
+<section id="dominios" class="intel-section">
   <div class="container">
-    <div class="section-label">DOMÍNIOS</div>
-    <h2 class="section-title">A mesma capacidade,<br>múltiplos domínios</h2>
-    <p class="section-subtitle">Não somos "IA para X". Somos capazes de construir sistemas inteligentes aplicados a qualquer domínio onde existam fontes fragmentadas e perguntas complexas.</p>
-    <div class="cards-grid" id="domains-container">
-      <!-- populated by JS -->
-    </div>
+    <div class="section-label">🌐 DOMÍNIOS</div>
+    <h2 class="section-title">A mesma capacidade atravessa domínios</h2>
+    <p class="section-subtitle">Domínio é aplicação. Capacidade é o produto.</p>
+    <div class="bento" id="domains-container"></div>
   </div>
 </section>
 
-<!-- CASES -->
-<section id="cases" class="bg-alt">
+<!-- SISTEMAS/CASES -->
+<section id="systems" class="intel-section bg-alt">
   <div class="container">
-    <div class="section-label">CASES</div>
-    <h2 class="section-title">Sistemas que já construímos</h2>
-    <p class="section-subtitle">Cada case representa um sistema real, com código público, dados abertos e resultados verificáveis.</p>
-    <div class="cards-grid" id="cases-container">
-      <!-- populated by JS -->
-    </div>
+    <div class="section-label">🏗️ SISTEMAS</div>
+    <h2 class="section-title">O que construímos</h2>
+    <p class="section-subtitle">Cada sistema é um caso real, com código público, dados abertos e resultados verificáveis.</p>
+    <div class="case-strip" id="case-strip"></div>
   </div>
 </section>
 
-<!-- COMO FUNCIONA -->
-<section id="como-funciona">
+<!-- HOW IT WORKS -->
+<section class="intel-section">
   <div class="container">
-    <div class="section-label">ARQUITETURA</div>
+    <div class="section-label">🔄 ARQUITETURA</div>
     <h2 class="section-title">Como funciona</h2>
-    <p class="section-subtitle">Um ciclo de investigação que se adapta ao problema — não o contrário.</p>
-    <div class="steps">
-      <div class="step"><div class="step-num">1</div><h4>Pergunta</h4><p>O problema define a busca</p></div>
-      <div class="step"><div class="step-num">2</div><h4>Descoberta</h4><p>Múltiplas fontes consultadas</p></div>
-      <div class="step"><div class="step-num">3</div><h4>Representação</h4><p>Dados estruturados em grafos, séries, redes</p></div>
-      <div class="step"><div class="step-num">4</div><h4>Investigação</h4><p>Evidência organizada, lacunas identificadas</p></div>
-      <div class="step"><div class="step-num">5</div><h4>Síntese</h4><p>Inteligência acionável produzida</p></div>
-      <div class="step"><div class="step-num">6</div><h4>Ação</h4><p>Decisão, oportunidade, próximo passo</p></div>
+    <p class="section-subtitle">Um ciclo que se adapta ao problema — não o contrário.</p>
+    <div class="flow">
+      <div class="flow-step"><div class="fs-num">1</div><h4>Pergunta</h4><p>O problema define a busca</p></div>
+      <div class="flow-step"><div class="fs-num">2</div><h4>Descoberta</h4><p>Múltiplas fontes consultadas em paralelo</p></div>
+      <div class="flow-step"><div class="fs-num">3</div><h4>Representação</h4><p>Dados estruturados em grafos, séries, redes</p></div>
+      <div class="flow-step"><div class="fs-num">4</div><h4>Investigação</h4><p>Evidência organizada, lacunas identificadas</p></div>
+      <div class="flow-step"><div class="fs-num">5</div><h4>Síntese</h4><p>Inteligência acionável com proveniência</p></div>
+      <div class="flow-step"><div class="fs-num">6</div><h4>Ação</h4><p>Decisão, oportunidade, próximo passo</p></div>
     </div>
-    <p style="margin-top:32px;font-size:0.9rem;color:#888;text-align:center">Por trás: contratos de evidência, proveniência auditável, separação observado/inferido, memória persistente e representações reutilizáveis.</p>
+    <p style="margin-top:28px;font-size:0.85rem;color:#888;text-align:center">Por trás: contratos de evidência (TraceFoundry) · proveniência auditável · separação observado/inferido · memória operacional · representações reutilizáveis (R4-R6)</p>
   </div>
 </section>
 
 <!-- EVIDÊNCIA -->
-<section id="evidencia" class="bg-alt">
+<section id="evidencia" class="intel-section bg-alt">
   <div class="container">
-    <div class="section-label">EVIDÊNCIA</div>
+    <div class="section-label">📄 EVIDÊNCIA</div>
     <h2 class="section-title">Publicações, datasets e resultados</h2>
     <p class="section-subtitle">Trabalhos aceitos, datasets públicos e demonstrações que validam a abordagem.</p>
-    <div class="evidence-grid" id="evidence-container">
-      <!-- populated by JS -->
-    </div>
+    <div class="ev-grid" id="evidence-grid"></div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section">
   <div class="container">
-    <h2>Transforme um problema real<br>em inteligência acionável</h2>
-    <p>Tem um desafio que dados convencionais não resolvem? Traga seu problema. Construímos o sistema.</p>
+    <h2>Tem um problema que dados convencionais<br>não conseguem resolver?</h2>
+    <p>Traga seu desafio. Investigamos com você. Construímos o sistema.</p>
     <a href="https://luxverso.com" target="_blank" class="btn btn-cta">Conversar →</a>
   </div>
 </section>
@@ -259,113 +274,189 @@
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-logo">Sistemas <span>Inteligentes</span> · <span style="font-weight:300;font-size:0.85rem;color:#888">parte do ecossistema</span> <span style="color:#888">LuxVerso</span></div>
+    <div class="fl">Sistemas <span>Inteligentes</span> · <span style="font-weight:300;font-size:0.8rem;color:#888">parte do ecossistema</span> <span style="color:#888">LuxVerso</span></div>
     <div class="links">
       <a href="https://github.com/viniburilux" target="_blank">GitHub</a>
       <a href="https://luxverso.com" target="_blank">LuxVerso</a>
-      <a href="https://luxverso.com/evidence" target="_blank">Publicações</a>
+      <a href="https://github.com/viniburilux/Sistemas-Inteligentes" target="_blank">Repositório</a>
     </div>
   </div>
 </footer>
 
 <script>
-// CAPABILITIES DATA
+// DESCOBERTAS — Intelligence Feed
+const discoveries = [
+  {
+    tag:"🧬 Biotecnologia",tagClass:"tag-bio",domain:"Agro",
+    question:"Quais organismos e mecanismos para controle biológico de nematoides em soja?",
+    finding:"Bacillus halotolerans Ba2-6 demonstrou 93,85% de mortalidade de juvenis e ativação da resistência sistêmica via ácido salicílico/jasmonato. B. subtilis CHFA/CHFB reduziu população em campo em 44-57%.",
+    implication:"As cepas brasileiras de Bacillus podem ser tão ou mais eficazes que as estrangeiras — mas faltam estudos comparativos em condições tropicais.",
+    nextLink:"evidence/experimento-lux-vs-llm.md",
+    status:"OBSERVADO",statusClass:"status-observed",
+    source:"DOI:10.1186/s12866-024-03514-y"
+  },
+  {
+    tag:"🛰️ Território",tagClass:"tag-territory",domain:"Mineração/Energia",
+    question:"Onde o território brasileiro está mudando mais rapidamente?",
+    finding:"Nordeste lidera transformação territorial média (2017-2024), não a Amazônia. O caso Remanso/BA foi detectado por satélite antes de aparecer em literatura. Distribuição heavy-tailed: 10% das regiões concentram 70% da mudança.",
+    implication:"Monitoramento por embeddings de satélite (AlphaEarth) detecta transformação precoce onde métodos convencionais falham — aplicável a mineração, energia e meio ambiente.",
+    nextLink:"cases/tti-brasil.md",
+    status:"OBSERVADO",statusClass:"status-observed",
+    source:"TTI Brasil 2017-2024, validação Sentinel-2 (47-80% confirmação)"
+  },
+  {
+    tag:"⛏️ Mineração",tagClass:"tag-mining",domain:"Materiais Críticos",
+    question:"Quais tecnologias convergem para recuperação de lítio de fontes secundárias?",
+    finding:"8+ patentes e artigos recentes convergindo em hidrometalurgia seletiva + processos eletroquímicos para reciclagem de baterias. Três rotas tecnológicas dominantes identificadas com sobreposição parcial de atores.",
+    implication:"A convergência sugere uma rota tecnológica emergente — e uma janela de oportunidade para P&D direcionado.",
+    nextLink:"https://github.com/viniburilux/inteligencia-metalurgica",
+    status:"INFERIDO",statusClass:"status-inferred",
+    source:"inteligencia-metalurgica (corpus de 72 arquivos, 43 patentes)"
+  },
+  {
+    tag:"⚡ Energia",tagClass:"tag-energy",domain:"Transição Energética",
+    question:"Como a expansão de renováveis está transformando o território nordestino?",
+    finding:"O TTI detectou aceleração de transformação em áreas de implantação de parques eólicos e solares no Nordeste entre 2020-2024. O padrão espacial coincide com novos contratos de energia mapeados via PNCP.",
+    implication:"A inteligência territorial pode servir como insumo para planejamento de transição energética — mitigando impactos antes que se consolidem.",
+    nextLink:"cases/ghostworks.md",
+    status:"OBSERVADO",statusClass:"status-observed",
+    source:"GhostWorks + TTI Brasil + PNCP Bahia Intelligence"
+  },
+  {
+    tag:"🏛️ Dados Públicos",tagClass:"tag-data",domain:"Transparência",
+    question:"Padrões de contratação pública emergem de dados abertos?",
+    finding:"4 cruzamentos (queimadas × PNCP × FIRMS × CNES/IBGE) revelaram: Catu com múltiplas dispensas em emergência, Marinha com 6 dispensas em 1 dia, hospital a 4km de foco de queimada sem contrato de mitigação.",
+    implication:"O cruzamento multi-fonte revela padrões que nenhuma base individual mostra — aplicável a controle social, fiscalização e jornalismo de dados.",
+    nextLink:"cases/cgu-reuso.md",
+    status:"OBSERVADO",statusClass:"status-observed",
+    source:"CGU Reuso 2026 (pronto para submissão)"
+  },
+  {
+    tag:"🧪 Ciência",tagClass:"tag-tech",domain:"P&D",
+    question:"A infraestrutura Lux produz respostas melhores que LLM puro?",
+    finding:"Experimento controlado: mesma pergunta (nematoides em soja), mesmas 5 fontes web_search. Resposta Lux: 101 evidências com DOI, 3 gaps declarados, separação observado/inferido. Resposta LLM pura: sem proveniência, sem gaps.",
+    implication:"A diferença não é conteúdo — é rastreabilidade. Um profissional pode verificar cada afirmação. O LLM puro exige confiança cega.",
+    nextLink:"evidence/experimento-lux-vs-llm.md",
+    status:"OBSERVADO",statusClass:"status-observed",
+    source:"Experimento Sistemas-Inteligentes, commit dc72e8a"
+  }
+];
+
+// CAPACIDADES (BENTO)
 const capabilities = [
-  {icon:"🔍",title:"Investigação multi-fonte",desc:"Consulta simultânea a literatura, patentes, datasets públicos, satélite e APIs científicas com evidência rastreável.",domains:"Todos"},
-  {icon:"🛰️",title:"Inteligência territorial",desc:"Detecção precoce de transformação via embeddings de satélite (AlphaEarth), validação óptica e análise temporal de trajetórias.",domains:"Território, Mineração, Energia, Meio Ambiente"},
-  {icon:"🧬",title:"Inteligência científica",desc:"Mapeamento de literatura, patentes, atores, instituições e relações com estados epistemológicos explícitos.",domains:"Biotecnologia, Agro, Ciência"},
-  {icon:"🎯",title:"Inteligência de oportunidades",desc:"Captura e estruturação de editais, chamadas, financiamentos e fontes de oportunidade em releases versionados.",domains:"Inovação, P&D, Governo"},
-  {icon:"📊",title:"Análise de dados públicos",desc:"Pipelines de transparência pública (PNCP, IBGE, SICONFI) com cruzamento multi-fonte e dashboards interativos.",domains:"Governo, Transparência, Contratos"},
-  {icon:"📜",title:"Proveniência e evidência",desc:"Contratos canônicos de evidência com 7 estados epistêmicos, versionamento por hash e cadeia auditável.",domains:"Todos (transversal)"},
-  {icon:"🧩",title:"Representação de conhecimento",desc:"Grafos de entidades, séries temporais, redes de citações — representações reutilizáveis independentes de domínio.",domains:"Todos (transversal)"},
-  {icon:"🤖",title:"Agentes de investigação",desc:"Sistemas multiagente com capacidades catalogadas, playbooks operacionais e integração com memória persistente.",domains:"Automação, Pesquisa"},
-  {icon:"🧠",title:"Sistemas de memória",desc:"Memória operacional consultável com handoff entre agentes, busca grounded por evidência e continuidade de investigação.",domains:"Automação, Operaçional"},
-  {icon:"🔬",title:"Sensoriamento inteligente",desc:"Sensor de espectroscopia Raman com IA embarcada (99,43% acurácia) para QC industrial e análise de materiais.",domains:"Farma, Alimentos, Petróleo, Mineração"}
+  {icon:"🔍",title:"Investigação multi-fonte",desc:"Consulta simultânea a literatura, patentes, datasets públicos, APIs científicas e satélite com evidência rastreável.",wide:false,tag:"Transversal"},
+  {icon:"🛰️",title:"Inteligência territorial",desc:"Detecção precoce de transformação via embeddings de satélite (AlphaEarth) com séries temporais e trajetórias.",wide:false,tag:"Território"},
+  {icon:"🧬",title:"Inteligência científica",desc:"Mapeamento de literatura, patentes, atores e relações com estados epistemológicos explícitos.",wide:false,tag:"Biotecnologia"},
+  {icon:"🎯",title:"Inteligência de oportunidades",desc:"Captura e estruturação de editais, chamadas e financiamentos em releases versionados.",wide:false,tag:"Inovação"},
+  {icon:"📊",title:"Análise de dados públicos",desc:"Pipelines de transparência com cruzamento multi-fonte e dashboards interativos.",wide:false,tag:"Governo"},
+  {icon:"📜",title:"Proveniência e evidência",desc:"Contratos canônicos com 7 estados epistêmicos, versionamento por hash e cadeia auditável.",wide:false,tag:"Transversal"},
+  {icon:"🧩",title:"Representação de conhecimento",desc:"Grafos, séries temporais, redes de atores — reutilizáveis independente de domínio (R4-R6).",wide:false,tag:"Transversal"},
+  {icon:"🤖",title:"Agentes e memória",desc:"Sistemas multiagente com capacidades catalogadas, playbooks e memória operacional persistente.",wide:false,tag:"Automação"},
+  {icon:"🔬",title:"Sensoriamento inteligente",desc:"Sensor Raman com IA (99,43% acurácia) para QC industrial — paper em revisão.",wide:false,tag:"Industrial"},
+  {icon:"📋",title:"Investigação de patentes",desc:"Análise de patentes minerais, materiais críticos e rotas tecnológicas com proveniência.",wide:false,tag:"Mineração"}
 ];
 
-// DOMAINS DATA
+// DOMÍNIOS
 const domains = [
-  {title:"🧬 Biotecnologia & Agro",desc:"Investigação de bioinsumos, organismos, processos, patentes e rotas tecnológicas com proveniência e corpus de referência.",cases:"Inteligência Biotecnológica"},
-  {title:"⛏️ Mineração & Materiais",desc:"Análise de patentes minerais, materiais críticos, processos de recuperação e rotas tecnológicas com dados públicos e proprietários.",cases:"Patentes Minerais, Representação"},
-  {title:"⚡ Energia & Transição",desc:"Mapeamento de expansão energética, impactos territoriais, tecnologias renováveis e oportunidades de P&D.",cases:"TTI, GhostWorks"},
-  {title:"🌿 Meio Ambiente & Território",desc:"Monitoramento de manguezais, queimadas, mudanças de uso do solo com séries temporais de satélite e validação de campo.",cases:"Manguezais, GhostWorks, TTI"},
-  {title:"🏛️ Dados Públicos & Transparência",desc:"Análise de contratações públicas, cruzamento com indicadores socioeconômicos, detecção de padrões e anomalias.",cases:"PNCP, Radar-Contratos, CGU"},
-  {title:"🧪 Ciência & P&D Industrial",desc:"Technology intelligence, scouting de parceiros, mapeamento de capacidades e investigação de fronteiras científicas.",cases:"TraceFoundry, Organoid Intelligence"},
-  {title:"💊 Farma & Saúde",desc:"Controle de qualidade por espectroscopia, análise de insumos farmacêuticos e investigação de文献científica.",cases:"LuxSense, Inteligência Biotecnológica"},
-  {title:"🏗️ Inovação & Oportunidades",desc:"Radar de editais, chamadas públicas e fontes de financiamento com release semanal automatizado.",cases:"Lux-Radar"}
+  {title:"🧬 Biotecnologia & Agro",desc:"Investigação de bioinsumos, organismos, processos e rotas com corpus de 763 obras e 2.680 atores.",cases:"Inteligência Biotecnológica",tagClass:"tag-bio"},
+  {title:"⛏️ Mineração & Materiais",desc:"Patentes minerais, materiais críticos, processos de recuperação — corpus de 72 arquivos.",cases:"Patentes Minerais",tagClass:"tag-mining"},
+  {title:"⚡ Energia & Transição",desc:"Mapeamento de expansão energética, impactos territoriais e tecnologias renováveis.",cases:"TTI, GhostWorks",tagClass:"tag-energy"},
+  {title:"🌿 Meio Ambiente",desc:"Monitoramento de manguezais, queimadas e mudanças com séries temporais de satélite.",cases:"Manguezais, GhostWorks",tagClass:"tag-territory"},
+  {title:"🏛️ Dados Públicos",desc:"Contratações, cruzamento multi-fonte (PNCP×IBGE×FIRMS), dashboards e transparência.",cases:"PNCP, CGU, Radar",tagClass:"tag-data"},
+  {title:"🧪 Ciência & P&D",desc:"Technology intelligence, scouting de parceiros, investigação de fronteiras científicas.",cases:"TraceFoundry, Organoid",tagClass:"tag-tech"},
+  {title:"💊 Farma & Saúde",desc:"Controle de qualidade espectral, insumos farmacêuticos e investigação científica.",cases:"LuxSense",tagClass:"tag-bio"},
+  {title:"🏗️ Inovação",desc:"Radar de editais, chamadas públicas e financiamentos com release semanal automatizado.",cases:"Lux-Radar",tagClass:"tag-data"}
 ];
 
-// CASES DATA
-const cases = [
-  {title:"TraceFoundry",desc:"Infraestrutura pública de investigação baseada em evidência com adapters reais (DANDI, Zenodo, OpenAlex, PatentsView), contratos canônicos e 7 estados epistêmicos.",url:"https://github.com/viniburilux/TraceFoundry",tag:"Infraestrutura"},
-  {title:"GhostWorks",desc:"Motor de inteligência territorial sobre embeddings de satélite com detecção precoce de transformação em mineração, energia e meio ambiente.",url:"https://github.com/viniburilux/ghostworks",tag:"Território"},
-  {title:"TTI Brasil 2017-2024",desc:"Índice de Transformação Territorial nacional (1-cos similarity de embeddings AlphaEarth), raster 2km, validação Sentinel-2 e notebook Colab.",url:"https://github.com/viniburilux/TTI_Brazil_2017_2024",tag:"Território"},
-  {title:"Inteligência Biotecnológica",desc:"Investigação pública de biotecnologia agropecuária com 763 obras, 2.680 atores, 767 instituições e provenance register.",url:"https://github.com/viniburilux/inteligencia-biotecnologica-agropecuaria",tag:"Biotecnologia"},
-  {title:"Lux-Radar",desc:"Motor de opportunity intelligence com pipeline semanal automatizado para captura de editais, chamadas e financiamentos.",url:"https://github.com/viniburilux/Lux-Radar",tag:"Oportunidades"},
-  {title:"LuxSense",desc:"Sensor Raman com IA (99,43% acurácia) para controle de qualidade industrial - paper em revisão (Frontiers in Nanotechnology).",url:"https://luxverso.com/luxsense",tag:"Sensoriamento"},
-  {title:"Organoid Intelligence",desc:"Investigação pública sobre aprendizagem e previsão em sistemas neurais biológicos com achados documentados (inclusive negativos).",url:"https://github.com/viniburilux/organoid-intelligence",tag:"Ciência"},
-  {title:"CGU Reuso 2026",desc:"4 cruzamentos de dados públicos (queimadas × PNCP × FIRMS × CNES/IBGE) com demo interativa e achados concretos.",url:"https://github.com/viniburilux/cgu-reuso-2026",tag:"Dados Públicos"},
-  {title:"Radar-Contratos-BA",desc:"Dashboard de contratações públicas artísticas da Bahia (R$160M, 1.325 contratos, 150 municípios) com React + Recharts.",url:"https://github.com/viniburilux/Radar-Contratos-BA",tag:"Transparência"},
-  {title:"Manguezais SP",desc:"Case territorial com 4.000 pontos amostrais, 7 anos de série, 364 artigos e achados que a literatura não explica.",url:"https://luxverso.com/Manguezais-Brasil/manguezais-sp",tag:"Território"}
+// SYSTEMS/CASES
+const systems = [
+  {name:"TraceFoundry",desc:"Infraestrutura de investigação baseada em evidência com contratos canônicos e 7 estados epistêmicos.",url:"https://github.com/viniburilux/TraceFoundry",tag:"Infraestrutura"},
+  {name:"GhostWorks",desc:"Motor de inteligência territorial sobre embeddings de satélite com detecção precoce.",url:"https://github.com/viniburilux/ghostworks",tag:"Território"},
+  {name:"TTI Brasil",desc:"Índice de Transformação Territorial nacional, raster 2km, validação independente.",url:"https://github.com/viniburilux/TTI_Brazil_2017_2024",tag:"Território"},
+  {name:"Inteligência Biotec.",desc:"Investigação pública de biotecnologia com 763 obras, 2.680 atores, 4.045 relações.",url:"https://github.com/viniburilux/inteligencia-biotecnologica-agropecuaria",tag:"Biotecnologia"},
+  {name:"Lux-Radar",desc:"Motor de opportunity intelligence com pipeline semanal automatizado.",url:"https://github.com/viniburilux/Lux-Radar",tag:"Oportunidades"},
+  {name:"LuxSense",desc:"Sensor Raman com IA (99,43% acurácia). Paper em revisão na Frontiers in Nanotechnology.",url:"https://luxverso.com/luxsense",tag:"Sensoriamento"},
+  {name:"Organoid Intelligence",desc:"Investigação científica pública sobre sistemas neurais biológicos.",url:"https://github.com/viniburilux/organoid-intelligence",tag:"Ciência"},
+  {name:"CGU Reuso",desc:"4 cruzamentos de dados públicos com demo e achados concretos.",url:"https://github.com/viniburilux/cgu-reuso-2026",tag:"Dados Públicos"},
+  {name:"Radar-Contratos-BA",desc:"Dashboard de R$160M em contratações artísticas da Bahia.",url:"https://github.com/viniburilux/Radar-Contratos-BA",tag:"Transparência"},
+  {name:"Manguezais SP",desc:"4.000 pontos, 7 anos, 364 artigos — achados que a literatura não explica.",url:"https://luxverso.com/Manguezais-Brasil/manguezais-sp",tag:"Território"}
 ];
 
-// EVIDENCE DATA
-const evidence = [
-  {title:"\"The Illusion of Consensus\"",type:"paper",venue:"CHI 2026 / InterAI Workshop",desc:"Interação humano-IA e viés de consenso em sistemas interativos."},
-  {title:"\"When Humans Become Regime Stabilizers\"",type:"paper",venue:"CHI 2026 / HEAL Workshop",desc:"Humanos como estabilizadores de regime em sistemas IA."},
-  {title:"\"Territorial Change Detection...\"",type:"paper",venue:"IJCAI-ECAI 2026 / GlobalSouthAI",desc:"Detecção de mudança territorial sob orçamento zero — valida o GhostWorks."},
-  {title:"Nano-enabled Sensing (em revisão)",type:"paper",venue:"Frontiers in Nanotechnology",desc:"Sensor Raman com IA para controle de qualidade — valida o LuxSense."},
-  {title:"TTI Brasil 2017-2024",type:"dataset",venue:"Zenodo (preprint)",desc:"Raster nacional de transformação territorial, 2km resolução, CC-BY 4.0."},
-  {title:"LuxVerso Semantic Convergence",type:"dataset",venue:"GitHub",desc:"352 conversas, 34.626 mensagens — dataset de interação humano-LLM longitudinal."},
-  {title:"GhostWorks Atlas",type:"dataset",venue:"GitHub",desc:"887 trajetórias de embeddings (2018-2024) em 6 fenômenos distintos."}
+// EVIDENCE
+const evidenceItems = [
+  {title:"\"The Illusion of Consensus\"",venue:"CHI 2026 / InterAI Workshop",desc:"Interação humano-IA e viés de consenso.",type:"paper"},
+  {title:"\"When Humans Become Regime Stabilizers\"",venue:"CHI 2026 / HEAL Workshop",desc:"Humanos como estabilizadores de regime em IA.",type:"paper"},
+  {title:"\"Territorial Change Detection...\"",venue:"IJCAI-ECAI 2026 / GlobalSouthAI",desc:"Detecção territorial — valida GhostWorks.",type:"paper"},
+  {title:"Nano-enabled Sensing (em revisão)",venue:"Frontiers in Nanotechnology",desc:"Sensor Raman com IA — valida LuxSense.",type:"paper"},
+  {title:"TTI Brasil 2017-2024",venue:"Zenodo (preprint)",desc:"Raster nacional de transformação, CC-BY 4.0.",type:"dataset"},
+  {title:"GhostWorks Atlas",venue:"GitHub",desc:"887 trajetórias em 6 fenômenos (2018-2024).",type:"dataset"},
+  {title:"Semantic Convergence Study",venue:"GitHub",desc:"352 conversas humano-LLM, 34.626 mensagens.",type:"dataset"},
+  {title:"Experimento Lux vs LLM",venue:"Sistemas-Inteligentes",desc:"Prova que infraestrutura Lux é objetivamente melhor.",type:"dataset"}
 ];
 
 // RENDER
-function renderCards(containerId, data, template) {
-  const c = document.getElementById(containerId);
-  data.forEach(item => {
-    let html = template(item);
-    c.innerHTML += html;
+function renderAll(){
+  // Discoveries
+  const dc = document.getElementById('discovery-container');
+  discoveries.forEach(d => {
+    dc.innerHTML += `<div class="discovery-card">
+      <span class="dc-tag ${d.tagClass}">${d.tag}</span>
+      <h3>${d.domain}</h3>
+      <div class="dc-question">${d.question}</div>
+      <div class="dc-finding">${d.finding}</div>
+      <div class="dc-implication">💡 ${d.implication}</div>
+      <div class="dc-meta">
+        <span class="dc-status ${d.statusClass}">${d.status}</span>
+        <span>${d.source}</span>
+      </div>
+      <a href="${d.nextLink}" class="dc-next">→ Explorar investigação</a>
+    </div>`;
+  });
+
+  // Capabilities
+  const bc = document.getElementById('bento-container');
+  capabilities.forEach(c => {
+    bc.innerHTML += `<div class="bento-card ${c.wide?'bento-wide':''}">
+      <div class="bc-icon">${c.icon}</div>
+      <h3>${c.title}</h3>
+      <p>${c.desc}</p>
+      <span class="bc-tag tag-cap">${c.tag}</span>
+    </div>`;
+  });
+
+  // Domains
+  const dm = document.getElementById('domains-container');
+  domains.forEach(d => {
+    dm.innerHTML += `<div class="bento-card">
+      <h3>${d.title}</h3>
+      <p>${d.desc}</p>
+      <span class="bc-tag ${d.tagClass}">Case: ${d.cases}</span>
+    </div>`;
+  });
+
+  // Case strip
+  const cs = document.getElementById('case-strip');
+  systems.forEach(s => {
+    cs.innerHTML += `<div class="case-chip" onclick="window.open('${s.url}','_blank')">
+      <h4>${s.name}</h4>
+      <p>${s.desc}</p>
+      <span class="chip-tag">${s.tag}</span>
+    </div>`;
+  });
+
+  // Evidence
+  const eg = document.getElementById('evidence-grid');
+  evidenceItems.forEach(e => {
+    eg.innerHTML += `<div class="ev-item">
+      <h4>${e.title}</h4>
+      <div class="ev-venue">${e.venue}</div>
+      <p style="font-size:0.78rem;color:#666;margin-bottom:6px">${e.desc}</p>
+      <span class="badge badge-${e.type}">${e.type==='paper'?'📄 Paper':'📦 Dataset'}</span>
+    </div>`;
   });
 }
 
-renderCards('capabilities-container', capabilities, (d) => `
-  <div class="card">
-    <div class="card-icon">${d.icon}</div>
-    <h3>${d.title}</h3>
-    <p>${d.desc}</p>
-    <span class="tag-domain">${d.domains}</span>
-  </div>
-`);
-
-renderCards('domains-container', domains, (d) => `
-  <div class="card">
-    <h3>${d.title}</h3>
-    <p>${d.desc}</p>
-    <span class="tag-domain">Case: ${d.cases}</span>
-  </div>
-`);
-
-renderCards('cases-container', cases, (d) => `
-  <div class="card" onclick="window.open('${d.url}','_blank')" style="cursor:pointer">
-    <h3>${d.title}</h3>
-    <p>${d.desc}</p>
-    <span class="tag-domain">${d.tag}</span>
-  </div>
-`);
-
-const ec = document.getElementById('evidence-container');
-evidence.forEach(e => {
-  ec.innerHTML += `
-    <div class="evidence-item">
-      <h4>${e.title}</h4>
-      <p>${e.venue}</p>
-      <p style="font-size:0.8rem">${e.desc}</p>
-      <span class="badge badge-${e.type === 'paper' ? 'paper' : 'dataset'}">${e.type === 'paper' ? '📄 Paper' : '📦 Dataset'}</span>
-    </div>
-  `;
-});
+renderAll();
 </script>
-
 </body>
 </html>
