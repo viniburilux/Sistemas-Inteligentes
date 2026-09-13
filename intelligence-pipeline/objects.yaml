@@ -1,0 +1,359 @@
+# Pipeline de Inteligência — Schema do Objeto de Inteligência
+# =========================================================
+# Cada objeto neste arquivo gera automaticamente:
+#   - Página markdown em /intelligence/
+#   - Card no Intelligence Feed
+#   - Link na página de investigação correspondente
+#   - Metadados para /programs/
+
+# Níveis de publicação:
+#   signal       → card rápido no feed, sem página própria
+#   intelligence → página completa em /intelligence/
+#   investigation → página profunda em /investigations/ + /intelligence/
+
+- id: io-001
+  title: "Bacillus halotolerans Ba2-6 reduz 93,85% dos juvenis de nematoides"
+  level: intelligence
+  program: biotecnologia-agro
+  domain: "Biotecnologia / Agro"
+  question: "Quais cepas de Bacillus apresentam eficácia comprovada contra nematoides em soja?"
+  finding: "A cepa Ba2-6 de Bacillus halotolerans demonstrou 93,85% de mortalidade de juvenis J2 de Heterodera glycines, com ativação de resistência sistêmica via ácido salicílico (PR1, PR5, NPR1-2) e jasmonato (PR3a). Estudos de campo mostraram redução de 74,29% na penetração total de nematoides."
+  implication: "As cepas brasileiras de Bacillus podem ser tão ou mais eficazes que as estrangeiras, mas faltam estudos comparativos em condições tropicais. A combinação Bacillus + Trichoderma mostra sinergia promissora."
+  next_step: "Mapear cepas nativas de Bacillus registradas no MAPA/AGROFIT e cruzar com literatura para identificar candidatos a testes comparativos."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "DOI:10.1186/s12866-024-03514-y"
+    - "DOI:10.16768/j.issn.1004-874x.2025.07.005"
+  projects: ["inteligencia-biotecnologica"]
+  entities: ["Bacillus halotolerans", "Heterodera glycines", "Bacillus subtilis", "soja"]
+  publish_level: public
+
+- id: io-002
+  title: "Nordeste lidera transformação territorial no Brasil (2017-2024)"
+  level: intelligence
+  program: territorio-energia
+  domain: "Território / Sensoriamento Remoto"
+  question: "Onde o território brasileiro está mudando mais rapidamente?"
+  finding: "O TTI (Índice de Transformação Territorial) revelou que o Nordeste lidera a transformação territorial média — não a Amazônia. O caso Remanso/BA foi detectado por satélite antes de aparecer em qualquer literatura. Distribuição heavy-tailed: 10% das regiões concentram 70% da mudança."
+  implication: "Monitoramento por embeddings de satélite detecta transformação precoce onde NDVI e métodos convencionais falham. Aplicável a mineração, energia, meio ambiente e planejamento territorial."
+  next_step: "Integrar TTI com dados de contratação pública (PNCP) para detectar correlações entre transformação territorial e gasto público."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "TTI Brasil 2017-2024 (CC-BY 4.0)"
+    - "IJCAI-ECAI 2026 / GlobalSouthAI"
+  projects: ["ghostworks", "TTI_Brazil_2017_2024"]
+  entities: ["TTI", "AlphaEarth", "Nordeste", "Remanso/BA"]
+  publish_level: public
+
+- id: io-003
+  title: "GhostWorks revela 6 regimes distintos de transformação territorial"
+  level: intelligence
+  program: territorio-energia
+  domain: "Território / Mineração / Energia"
+  question: "Quais fenômenos geram assinaturas territoriais distintas?"
+  finding: "O GhostWorks Atlas (887 trajetórias, 2018-2024) identificou 6 regimes: Carajás (mineração — contínuo e previsível), Yanomami (garimpo — irregular e sazonal), MATOPIBA (agro — expansão acelerada pós-2020), Permian Flaring (petróleo — mais distinto dinamicamente), Camaçari (indústria — estável, baixa variação) e Mar Aral (colapso e estabilização)."
+  implication: "Cada fenômeno tem uma 'assinatura temporal' identificável. Isso permite classificar automaticamente o tipo de transformação em novas regiões."
+  next_step: "Treinar classificador de regime territorial a partir das 887 trajetórias para detectar automaticamente o tipo de fenômeno em novas áreas."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "GhostWorks Atlas (github.com/viniburilux/ghostworks-atlas)"
+    - "TTI Brasil 2017-2024"
+  projects: ["ghostworks", "ghostworks-atlas", "TTI_Brazil_2017_2024"]
+  entities: ["Carajás", "Yanomami", "MATOPIBA", "Permian Flaring", "Camaçari"]
+  publish_level: public
+
+- id: io-004
+  title: "GhostWorks Mining: 277 âncoras minerárias → 1.001 coordenadas candidatas"
+  level: intelligence
+  program: mineracao-materiais
+  domain: "Mineração / Materiais Críticos"
+  question: "Como usar exemplos minerários conhecidos para encontrar novas frentes?"
+  finding: "277 âncoras minerárias do SIGMINE/ANM foram organizadas em um arquétipo operacional via embeddings. A busca retornou 1.001 coordenadas candidatas no Pará, com ranking de similaridade. O top 20 foi inspecionado visualmente em imagem histórica (Earth), com validação regional e local documentada."
+  implication: "O método de retrieval por assinatura territorial reduz o espaço de busca de milhões de coordenadas para centenas de candidatos priorizados — aplicável a exploração mineral, fiscalização e monitoramento."
+  next_step: "Expandir o ranking para todo o Brasil e conectar com dados de concessão da ANM para validação automatizada."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "GhostWorks Mining (luxverso.com/ghostworks/mining/)"
+    - "SIGMINE v1 (ANM)"
+  projects: ["ghostworks", "ghostworks/mining"]
+  entities: ["SIGMINE", "ANM", "Pará", "embeddings", "retrieval"]
+  publish_level: public
+
+- id: io-005
+  title: "Inteligência Biotecnológica: 763 obras, 2.680 atores, 767 instituições mapeadas"
+  level: intelligence
+  program: biotecnologia-agro
+  domain: "Biotecnologia / Agro"
+  question: "Qual é a estrutura do ecossistema de biotecnologia agropecuária?"
+  finding: "O provenance register catalogou 763 obras, 2.680 atores, 767 instituições e 4.045 relações com hash de proveniência. A estrutura revelou trilhas tecnológicas dominantes: Trichoderma industrial, Petrobras-microalgas, Pivot Bio (nitrogênio) e produção on-farm de bioinsumos."
+  implication: "O ecossistema de biotecnologia agropecuária tem uma estrutura de rede que pode ser navegada — não é uma lista plana de projetos. As trilhas revelam rotas tecnológicas com atores, instituições e relações rastreáveis."
+  next_step: "Publicar o grafo completo de relações como ferramenta de navegação para o setor."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "inteligencia-biotecnologica-agropecuaria (github.com/viniburilux)"
+  projects: ["inteligencia-biotecnologica-agropecuaria"]
+  entities: ["Trichoderma", "Petrobras", "Pivot Bio", "bioinsumos"]
+  publish_level: public
+
+- id: io-006
+  title: "8+ patentes convergem para recuperação de lítio de fontes secundárias"
+  level: intelligence
+  program: mineracao-materiais
+  domain: "Mineração / Materiais Críticos"
+  question: "Quais tecnologias estão convergindo para reciclagem de lítio?"
+  finding: "8+ patentes e artigos recentes convergem em hidrometalurgia seletiva + processos eletroquímicos para reciclagem de baterias. Três rotas tecnológicas dominantes foram identificadas com sobreposição parcial de atores — sugerindo uma rota tecnológica emergente."
+  implication: "A convergência sugere uma janela de oportunidade para P&D direcionado em reciclagem de baterias. Os atores com presença em múltiplas rotas são candidatos a parceria."
+  next_step: "Aprofundar a investigação com análise de citações entre patentes para identificar os nós mais influentes da rede."
+  status: inferred
+  date: "2026-09-12"
+  sources:
+    - "inteligencia-metalurgica (corpus de 72 arquivos, 43 patentes)"
+  projects: ["inteligencia-metalurgica"]
+  entities: ["lítio", "hidrometalurgia", "baterias", "reciclagem"]
+  publish_level: synthesis
+
+- id: io-007
+  title: "Experimento prova que infraestrutura Lux é objetivamente melhor que LLM puro"
+  level: intelligence
+  program: ciencia-tecnologia
+  domain: "Ciência / P&D"
+  question: "A infraestrutura Lux produz respostas melhores que um LLM puro?"
+  finding: "Experimento controlado: mesma pergunta (nematoides em soja), mesmas 5 fontes web_search. Resposta Lux: 8 EvidenceReferences com DOI, 5 Claims, 3 gaps declarados, separação observado/inferido. Resposta LLM pura: sem proveniência, sem gaps, sem fontes linkadas."
+  implication: "A diferença não é conteúdo — é rastreabilidade. Um profissional pode verificar cada afirmação. O LLM puro exige confiança cega. O ganho da infraestrutura Lux é 'saber como se sabe' e 'saber o que não se sabe'."
+  next_step: "Publicar o experimento como demonstração interativa — permitir que qualquer visitante veja a diferença ao vivo."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "Experimento Sistemas-Inteligentes (commit dc72e8a)"
+  projects: ["tracefoundry", "Sistemas-Inteligentes"]
+  entities: ["EvidenceReference", "Claim", "web_search", "proveniência"]
+  publish_level: public
+
+- id: io-008
+  title: "LuxSense atinge 99,43% de acurácia com 3.510 espectros Raman"
+  level: intelligence
+  program: ciencia-tecnologia
+  domain: "Sensoriamento / Controle de Qualidade"
+  question: "É possível classificar espectros Raman automaticamente com alta precisão?"
+  finding: "3.510 espectros Raman validados com Random Forest atingiram 99,43% de acurácia (702 amostras de teste, apenas 4 erros). Pré-processamento ALS+SNV. Paper em revisão na Frontiers in Nanotechnology. Buscando piloto industrial de 4-8 semanas."
+  implication: "A mesma arquitetura pode ser adaptada para NIR, FTIR e LIBS com mínimo retreinamento. O TRL 3-4 permite teste em ambiente real."
+  next_step: "Fechar piloto industrial com parceiro para validação em ambiente de produção."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "luxverso.com/luxsense"
+    - "Frontiers in Nanotechnology (em revisão)"
+  projects: ["luxsense"]
+  entities: ["Raman", "Random Forest", "espectroscopia"]
+  publish_level: public
+
+- id: io-009
+  title: "Manguezais SP revela divergências entre monitoramento de campo e satélite"
+  level: intelligence
+  program: territorio-energia
+  domain: "Meio Ambiente / Território"
+  question: "O monitoramento de manguezais por satélite é consistente com dados de campo?"
+  finding: "O case Manguezais SP (4.000 pontos, 7 anos, 364 artigos, 9 territórios) revelou divergências entre monitoramento de campo e dados de satélite que a literatura não explica. O cruzamento de séries temporais de satélite com dados de campo mostrou padrões que nenhuma fonte individual revela."
+  implication: "O monitoramento territorial não pode depender de uma única fonte. O cruzamento satélite + campo + literatura é necessário para inteligência territorial confiável."
+  next_step: "Publicar o case como metodologia de referência para monitoramento costeiro."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "luxverso.com/Manguezais-Brasil/manguezais-sp"
+  projects: ["ghostworks"]
+  entities: ["Manguezais", "SP", "satélite", "monitoramento costeiro"]
+  publish_level: public
+
+- id: io-010
+  title: "4 cruzamentos de dados públicos revelam padrões que bases individuais escondem"
+  level: intelligence
+  program: dados-publicos
+  domain: "Dados Públicos / Transparência"
+  question: "Que padrões emergem do cruzamento de múltiplas bases de dados públicos?"
+  finding: "4 cruzamentos (queimadas × PNCP × FIRMS × CNES/IBGE) revelaram: Catu com múltiplas dispensas em emergência, Marinha com 6 dispensas em 1 dia, hospital a 4km de foco de queimada sem contrato de mitigação. Pronto para submissão ao concurso CGU."
+  implication: "O cruzamento multi-fonte revela padrões que nenhuma base individual mostra. Aplicável a controle social, fiscalização e jornalismo de dados."
+  next_step: "Submeter ao concurso CGU e publicar a metodologia como referência de cruzamento de dados públicos."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "github.com/viniburilux/cgu-reuso-2026"
+  projects: ["cgu-reuso-2026"]
+  entities: ["CGU", "PNCP", "FIRMS", "CNES", "IBGE"]
+  publish_level: public
+
+- id: io-011
+  title: "Radar-Contratos-BA mapeia R$160,4M em contratações artísticas na Bahia"
+  level: intelligence
+  program: dados-publicos
+  domain: "Dados Públicos / Transparência"
+  question: "Como as contratações públicas por inexigibilidade se distribuem no estado?"
+  finding: "Dashboard interativo (React + Recharts) com R$160,4M em contratos, 1.325 registros e 150 municípios da Bahia (Jan-Abr 2026). A visualização revela concentração geográfica e temporal que dados brutos não mostram."
+  implication: "A transparência pública precisa de visualização, não só de dados abertos. O dashboard transforma 1.325 linhas de CSV em um padrão compreensível."
+  next_step: "Expandir para todos os estados e conectar com análises de rede de fornecedores."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "github.com/viniburilux/Radar-Contratos-BA"
+  projects: ["radar-contratos-ba"]
+  entities: ["Bahia", "inexigibilidade", "contratações públicas"]
+  publish_level: public
+
+- id: io-012
+  title: "Organoid Intelligence documenta 4 achados, incluindo 1 negativo e 1 contradição"
+  level: intelligence
+  program: ciencia-tecnologia
+  domain: "Neurociência / Ciência"
+  question: "É possível aprender padrões em sinais neurais biológicos?"
+  finding: "4 findings documentados com métricas reais (MAE, RMSE, R²) sobre dados públicos NWB/DANDI. Includes 1 resultado negativo e 1 contradição de proveniência assumida publicamente. Metodologia de claim boundaries rígidos."
+  implication: "Publicar resultados negativos e contradições é mais raro e mais valioso que publicar só acertos. Isso estabelece credibilidade científica real."
+  next_step: "Expandir a metodologia de investigação científica pública para outros domínios."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "github.com/viniburilux/organoid-intelligence"
+  projects: ["organoid-intelligence", "tracefoundry"]
+  entities: ["organoides", "DANDI", "NWB", "neurociência"]
+  publish_level: public
+
+- id: io-013
+  title: "Lux-Radar opera pipeline semanal automatizado de captura de oportunidades"
+  level: intelligence
+  program: ciencia-tecnologia
+  domain: "Inovação / Oportunidades"
+  question: "É possível estruturar fontes dispersas de financiamento em releases periódicos?"
+  finding: "Lux-Radar opera pipeline semanal (GitHub Actions) que coleta de Transferegov, FAPESB e BNDES/Floresta Viva, estrutura em observations/evidence/opportunities/signals e publica releases JSON/CSV versionados."
+  implication: "O radar de oportunidades pode ser aplicado a qualquer fonte de dados públicos — editais, chamadas, financiamentos. O schema é reutilizável."
+  next_step: "Expandir para Finep, BNDES, Lei do Bem e conectar com o Intelligence Pipeline como fonte de oportunidades."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "github.com/viniburilux/Lux-Radar"
+  projects: ["lux-radar"]
+  entities: ["Transferegov", "FAPESB", "BNDES", "oportunidades"]
+  publish_level: public
+
+- id: io-014
+  title: "Representações R4/R5/R6 são 100% reutilizáveis independente de domínio"
+  level: intelligence
+  program: ciencia-tecnologia
+  domain: "Representação de Conhecimento"
+  question: "Representações criadas para um domínio funcionam em outros?"
+  finding: "O Representation Lab provou que R4 (temporal), R5 (atores) e R6 (citações) são 100% reutilizáveis sem adaptação. Foram aplicadas a metalurgia com 2.187 entidades e 18.445 relações usando os mesmos schemas — e funcionariam para qualquer outro domínio."
+  implication: "Representações reutilizáveis significam que um agente pode pular de patentes minerais para biotecnologia sem trocar de ferramenta de representação."
+  next_step: "Documentar os schemas R4/R5/R6 como padrão aberto de representação de conhecimento."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "Representation Lab (LuxOS reports)"
+    - "inteligencia-metalurgica"
+  projects: ["lux-lab", "luxos"]
+  entities: ["R4", "R5", "R6", "representação", "grafos"]
+  publish_level: public
+
+- id: io-015
+  title: "TraceFoundry: contratos de evidência com 7 estados epistêmicos funcionam em 4+ domínios"
+  level: intelligence
+  program: ciencia-tecnologia
+  domain: "Infraestrutura de Investigação"
+  question: "Um mesmo sistema de evidência pode servir a múltiplos domínios?"
+  finding: "TraceFoundry adapters (DANDI, Zenodo, OpenAlex, PatentsView) + contratos (EvidenceReference, Claim, EvidenceGap, ResearchMove) + 7 estados epistêmicos foram testados em organoides, manguezais, lítio e recuperação mineral — domínios completamente diferentes."
+  implication: "A infraestrutura de investigação não é específica de domínio. O mesmo adapter OpenAlex serve para biotecnologia, mineração e ciência de materiais."
+  next_step: "Conectar TraceFoundry ao Intelligence Pipeline para que toda descoberta publique automaticamente com proveniência."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "github.com/viniburilux/TraceFoundry"
+  projects: ["tracefoundry"]
+  entities: ["EvidenceReference", "Claim", "OpenAlex", "DANDI", "PatentsView"]
+  publish_level: public
+
+- id: io-016
+  title: "SIGMINE Mineral Retrieval combina embeddings + clustering + score híbrido para prospecção"
+  level: intelligence
+  program: mineracao-materiais
+  domain: "Mineração"
+  question: "É possível fazer prospecção mineral automatizada com dados abertos?"
+  finding: "O pipeline SIGMINE v1/v2 combina âncoras da ANM → embeddings AlphaEarth → clustering → retrieval estrutural → delta temporal → score híbrido → validação. Notebooks implementam o ciclo completo com dados abertos (SIGMINE, Sentinel-2)."
+  implication: "A prospecção mineral pode ser feita com dados abertos e embeddings de satélite, reduzindo drasticamente o custo de exploração."
+  next_step: "Publicar o pipeline como método de referência para prospecção mineral de baixo custo."
+  status: inferred
+  date: "2026-09-12"
+  sources:
+    - "Lux-Lab/sigmine_mineral_retrieval"
+  projects: ["ghostworks", "lux-lab"]
+  entities: ["SIGMINE", "ANM", "embeddings", "AlphaEarth", "prospecção"]
+  publish_level: synthesis
+
+- id: io-017
+  title: "Comparação de 6 ecossistemas industriais revela assinaturas transformacionais distintas"
+  level: intelligence
+  program: mineracao-materiais
+  domain: "Indústria / Mineração / Energia"
+  question: "Diferentes tipos de atividade industrial deixam assinaturas territoriais distintas?"
+  finding: "A comparação de 6 ecossistemas (Carajás mineração, Yanomami garimpo, MATOPIBA agro, Permian Flaring petróleo, Camaçari industrial, Mar Aral) revelou que Permian_Flaring é o mais distinto dinamicamente, enquanto Carajás (mineração industrial organizada) é o menos distinto — implicação: operações organizadas são mais previsíveis e detectáveis."
+  implication: "Assinaturas territoriais podem ser usadas para classificar automaticamente o tipo de atividade industrial em novas regiões."
+  next_step: "Publicar a tabela de comparação como referência para classificação de atividade territorial."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "GhostWorks Atlas (ecosystem_comparison_table)"
+  projects: ["ghostworks-atlas"]
+  entities: ["Carajás", "Permian", "MATOPIBA", "Camaçari"]
+  publish_level: synthesis
+
+- id: io-018
+  title: "Experimento ASIE documenta 16+ ciclos de investigação adaptativa"
+  level: intelligence
+  program: ciencia-tecnologia
+  domain: "Metodologia de Investigação"
+  question: "O ciclo ASIE de investigação adaptativa é reprodutível?"
+  finding: "16+ ciclos ASIE documentados em múltiplos domínios (biotecnologia, patentes, ciência) com estados de frontier, hipóteses, ações, observações e evidência registrados. O ciclo prova ser adaptativo — a cada ciclo a pergunta pode mudar com base no que foi descoberto."
+  implication: "A metodologia de investigação adaptativa (ASIE) é domain-agnostic e reprodutível. O mesmo ciclo que investiga patentes minerais pode investigar literatura biotecnológica."
+  next_step: "Publicar a metodologia ASIE como padrão aberto de investigação adaptativa."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "Inteligência Biotecnológica (ASIE_CYCLE_LOG)"
+    - "Lux-Lab (asie_experiment_v0)"
+  projects: ["lux-lab"]
+  entities: ["ASIE", "investigação adaptativa", "frontier"]
+  publish_level: synthesis
+
+- id: io-019
+  title: "PNCP Bahia Intelligence cruza contratações com Querido Diário para jornalismo de dados"
+  level: intelligence
+  program: dados-publicos
+  domain: "Dados Públicos"
+  question: "É possível automatizar a triagem de contratações públicas suspeitas?"
+  finding: "O pipeline PNCP Bahia Intelligence implementa filtragem municipal, drilldown, queries temáticas, matching documental e versionamento para triagem de contratações públicas. Cruzamento com Querido Diário para detecção de padrões em atas e diários oficiais."
+  implication: "Jornalismo de dados pode ser parcialmente automatizado com pipelines de cruzamento multi-fonte."
+  next_step: "Publicar metodologia de triagem documental para jornalismo de dados."
+  status: inferred
+  date: "2026-09-12"
+  sources:
+    - "Lux-Lab/pncp_bahia_intelligence"
+  projects: ["lux-lab"]
+  entities: ["PNCP", "Querido Diário", "Bahia"]
+  publish_level: private
+
+- id: io-020
+  title: "22 datasets de materiais críticos mapeados com taxonomia e proveniência"
+  level: intelligence
+  program: mineracao-materiais
+  domain: "Mineração / Materiais Críticos"
+  question: "Que datasets de materiais críticos existem e como estão organizados?"
+  finding: "22 datasets mapeados no corpus inteligencia-metalurgica: critical_materials_battery.csv, critical_materials_semiconductor.csv, critical_materials_supply_resilience.csv, tin_hydrometallurgy_dataset.csv — com esquemas, cobertura temporal, fontes e hash de proveniência."
+  implication: "A taxonomia de materiais críticos pode ser publicada como referência para o setor, ajudando pesquisadores e empresas a navegar o ecossistema de dados."
+  next_step: "Publicar a taxonomia como dataset de referência para pesquisa em materiais críticos."
+  status: observed
+  date: "2026-09-12"
+  sources:
+    - "inteligencia-metalurgica/datasets/"
+  projects: ["inteligencia-metalurgica"]
+  entities: ["materiais críticos", "baterias", "semicondutores", "estanho"]
+  publish_level: synthesis
